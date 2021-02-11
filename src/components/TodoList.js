@@ -1,12 +1,12 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { VisibilityFilters, toggleTodo } from '../actions'
+import { VisibilityFilters, toggleTodo, removeTodo } from '../actions'
 import Todo from './Todo';
 
-const TodoList = ({ todos, toggleTodo }) => (
+const TodoList = ({ todos, toggleTodo, removeTodo }) => (
   <div className='todo-container'>
       {todos.map(todo => (
-        <Todo key={todo.id} {...todo} onClick={() => toggleTodo(todo.id)} />
+        <Todo key={todo.id} {...todo} onClick={() => toggleTodo(todo.id)} removeTodo={() => removeTodo(todo.id)} />
       ))}
   </div>
 );
@@ -29,7 +29,8 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  toggleTodo: id => dispatch(toggleTodo(id))
+  toggleTodo: id => dispatch(toggleTodo(id)),
+  removeTodo: id => dispatch(removeTodo(id))
 });
 
 export default connect(

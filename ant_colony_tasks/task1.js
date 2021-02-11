@@ -26,14 +26,15 @@ var nextArrayStruct = function (a) {
     }
   })
 
+  
   return {id: missingId(ids), value: value};
 }
 
 var missingId = function(nums, min=0) {
   if (nums.length < 1) {
-      return 1;
+    return 1;
   };
-
+  
   let missing = 1;
   
   let myHash = {};
@@ -41,9 +42,9 @@ var missingId = function(nums, min=0) {
   for (let num of nums) {if (num > 0) myHash[num] = true};
   
   for (missing; missing <= nums.length; missing++) {
-      if (!myHash[missing] && missing > min) {
-          return missing;
-      };      
+    if (!myHash[missing] && missing > min) {
+      return missing;
+    };      
   };
   
   return missing; 
@@ -51,9 +52,9 @@ var missingId = function(nums, min=0) {
 
 var occurence = function(arr) {
   var a = [],
-    b = [],
-    prev;
-
+  b = [],
+  prev;
+  
   arr.sort();
   for (var i = 0; i < arr.length; i++) {
     if (arr[i] !== prev) {
@@ -64,6 +65,12 @@ var occurence = function(arr) {
     }
     prev = arr[i];
   }
-
+  
   return [a, b];
 }
+
+//   For a random array of structs of type { id, value }, return a
+// new struct, with a unique id and a value such as the next
+// positive integer, which isn't present in the existing
+// structure list and with at least one smaller integer
+// appearing at least twice in the same list.
